@@ -6,14 +6,18 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>003-环境-linux安装docker - chenguang-blog</title>
+  <title>501-自增变量说明 - chenguang-blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-  <meta name="keywords" content=", linux，docker">
-  <meta name="description" content="环境-linux安装docker
+  <meta name="keywords" content=", 知识点，自增变量">
+  <meta name="description" content="知识点-自增变量自增变量说明
 
-环境-虚拟机网络设...">
+
+自增变量
+
+题目
+1...">
   <meta name="author" content="chenguang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -137,7 +141,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">003-环境-linux安装docker</div>
+    <div class="center">501-自增变量说明</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -178,79 +182,71 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/01.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/10.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">003-环境-linux安装docker</h1>
+    <h1 class="head-title">501-自增变量说明</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 21, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 20, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1166</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>863</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p>环境-虚拟机网络设置</p>
+        <p>自增变量</p>
 <ol>
-<li><p>​    Docker 简介</p>
+<li><p>题目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    int i &#x3D; 1;</span><br><span class="line">    i &#x3D; i++;</span><br><span class="line">    int j &#x3D; i++;</span><br><span class="line">    int k &#x3D; i + ++i * i++;</span><br><span class="line">    System.out.println(&quot;i&#x3D;&quot; + i);</span><br><span class="line">    System.out.println(&quot;j&#x3D;&quot; + j);</span><br><span class="line">    System.out.println(&quot;k&#x3D;&quot; + k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>结果</p>
 <ul>
-<li>虚拟化容器技术。Docker基于镜像，可以秒级启动各种容器。每一种容器都是一个完成的运行环境，容器之间相互隔离</li>
-<li>docker 镜像网站：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></li>
-<li>docker 官网文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com/</a></li>
-<li>docker centos 安装文档地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></li>
+<li>i = 4,j = 1,k = 11</li>
 </ul>
 </li>
-<li><p>docker 常用命令</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">docker -v</td>
-<td align="center">查看Docker版本</td>
-</tr>
-<tr>
-<td align="center">docker image</td>
-<td align="center">检查当前虚拟机下载镜像</td>
-</tr>
-<tr>
-<td align="center">docker ps</td>
-<td align="center">查看运行程序</td>
-</tr>
-<tr>
-<td align="center">docker exec -it * /bin/bash</td>
-<td align="center">进入*容器内部</td>
-</tr>
-<tr>
-<td align="center">docker restart *</td>
-<td align="center">重启</td>
-</tr>
-</tbody></table>
+<li><p>分析该题</p>
+<ul>
+<li><p>i = i++;</p>
+<ol>
+<li>把 i 的值压入操作数栈</li>
+<li>i 变量自增1</li>
+<li>把操作数栈中的值赋值给i</li>
+<li>故 i = 1 </li>
+</ol>
+</li>
+<li><p>int j = i++;</p>
+<ol>
+<li><p>此时 i =1;</p>
+</li>
+<li><p>把i的值压入操作数栈</p>
+</li>
+<li><p>i变量自增1</p>
+</li>
+<li><p>把操作栈中的值赋值给j</p>
 </li>
 </ol>
-<ol start="3">
-<li><p>安装</p>
+<p>故j = i</p>
+</li>
+<li><p>int k = i + ++i * i++;</p>
+<ol>
+<li>此时 i = 2;</li>
+<li>把 i 的值压入操作数栈，故数据栈中i=2</li>
+<li>（++i）i 变量自增1</li>
+<li>（++i）把 i 的值压入操作数栈,故数据栈中i=3</li>
+<li> ( i++) 把 i 的值压入操作数栈，此时 i=3</li>
+<li> ( i++) i 变量自增1,故操作栈中i=3，局部变量i=4;</li>
+<li> (++i * i++) 把操作数栈中前两个弹出求乘积结果再压入栈,故此时操作栈中 i 均为3，乘积为9</li>
+<li>（i + ++i * i++）把操作数栈中的值弹出求和再赋值给k，i从开始赋值为操作栈中数据为2，(++i * i++) 乘积为9，故2 + 9 = 11；</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>总结</p>
 <ul>
-<li><p>首先卸载旧版本的docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure></li>
-<li><p>安装yum-utils包并设置稳定存储库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils</span><br><span class="line"></span><br><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure></li>
-<li><p>安装docker 引擎</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line">提示 Is this ok [y&#x2F;d&#x2F;N]: 输入y继续 </span><br></pre></td></tr></table></figure></li>
-<li><p>启动docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure></li>
-<li><p>检查docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
-<p>此命令下载测试映像并在容器中运行它。当容器运行时，它打印一条信息消息并退出。</p>
-</li>
-<li><p>设置docker 开机自启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker</span><br></pre></td></tr></table></figure>
-
-
-</li>
+<li>赋值=，最后计算</li>
+<li>=右边的从左到右加载值一次压入操作栈</li>
+<li>实际先算哪个，看运算符优先级</li>
+<li>自增、自减操作都是直接修改变量的值，不经过操作栈</li>
+<li>最后的赋值之前，临时结果也是存储在操作数栈中</li>
 </ul>
 </li>
 </ol>
@@ -260,7 +256,7 @@
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>chenguang</li>
-    <li><strong>本文链接：</strong><a href="http://example.com/2021/01/21/003.%E7%8E%AF%E5%A2%83-linux%E5%AE%89%E8%A3%85docker/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;21&#x2F;003.%E7%8E%AF%E5%A2%83-linux%E5%AE%89%E8%A3%85docker&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;21&#x2F;003.%E7%8E%AF%E5%A2%83-linux%E5%AE%89%E8%A3%85docker&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/01/20/501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;20&#x2F;501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;20&#x2F;501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -277,12 +273,12 @@
 </section>
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%8Cdocker/" rel="tag">虚拟机，docker</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">知识点</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2021/01/21/004.%E7%8E%AF%E5%A2%83-%E9%85%8D%E7%BD%AEdocker%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/"><i class="iconfont iconleft"></i>004-环境-配置docker阿里云镜像加速器</a>
-    <a href="/2021/01/21/502.Singleton%20%E5%8D%95%E4%BE%8B/">502-singleton单例<i class="iconfont iconright"></i></a>
+    <a href="/2021/01/20/002.%E7%8E%AF%E5%A2%83-%E4%BD%BF%E7%94%A8vagrant%E5%BF%AB%E9%80%9F%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/"><i class="iconfont iconleft"></i>002-环境-使用vagrant快速创建Linux虚拟机</a>
+    <a href="/2021/01/19/001.%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/">001-实战电商项目<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
