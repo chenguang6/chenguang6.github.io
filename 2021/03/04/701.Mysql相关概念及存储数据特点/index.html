@@ -6,18 +6,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>501-自增变量说明 - chenguang-blog</title>
+  <title>701.Mysql相关概念及存储数据特点 - chenguang-blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-  <meta name="keywords" content=", 知识点，自增变量">
-  <meta name="description" content="知识点-自增变量自增变量说明
-
-
-自增变量
-
-题目
-1...">
+  <meta name="keywords" content=", 概念及存储数据特点">
+  <meta name="description" content="Mysql相关概念及存储数据特点相关概念DB
+数据库（...">
   <meta name="author" content="chenguang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -141,7 +136,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">501-自增变量说明</div>
+    <div class="center">701.Mysql相关概念及存储数据特点</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -182,81 +177,48 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/02.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">501-自增变量说明</h1>
+    <h1 class="head-title">701.Mysql相关概念及存储数据特点</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 20, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 04, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>863</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>509</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p>自增变量</p>
-<ol>
-<li><p>题目</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    int i &#x3D; 1;</span><br><span class="line">    i &#x3D; i++;</span><br><span class="line">    int j &#x3D; i++;</span><br><span class="line">    int k &#x3D; i + ++i * i++;</span><br><span class="line">    System.out.println(&quot;i&#x3D;&quot; + i);</span><br><span class="line">    System.out.println(&quot;j&#x3D;&quot; + j);</span><br><span class="line">    System.out.println(&quot;k&#x3D;&quot; + k);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>结果</p>
-<ul>
-<li>i = 4,j = 1,k = 11</li>
+        <h1 id="Mysql相关概念及存储数据特点"><a href="#Mysql相关概念及存储数据特点" class="headerlink" title="Mysql相关概念及存储数据特点"></a>Mysql相关概念及存储数据特点</h1><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="DB"><a href="#DB" class="headerlink" title="DB"></a>DB</h3><ul>
+<li>数据库（database）：数据库，保存一组有组织的数据的容器。</li>
 </ul>
-</li>
-<li><p>分析该题</p>
-<ul>
-<li><p>i = i++;</p>
-<ol>
-<li>把 i 的值压入操作数栈</li>
-<li>i 变量自增1</li>
-<li>把操作数栈中的值赋值给i</li>
-<li>故 i = 1 </li>
-</ol>
-</li>
-<li><p>int j = i++;</p>
-<ol>
-<li><p>此时 i =1;</p>
-</li>
-<li><p>把i的值压入操作数栈</p>
-</li>
-<li><p>i变量自增1</p>
-</li>
-<li><p>把操作栈中的值赋值给j</p>
-</li>
-</ol>
-<p>故j = i</p>
-</li>
-<li><p>int k = i + ++i * i++;</p>
-<ol>
-<li>此时 i = 2;</li>
-<li>把 i 的值压入操作数栈，故数据栈中i=2</li>
-<li>（++i）i 变量自增1</li>
-<li>（++i）把 i 的值压入操作数栈,故数据栈中i=3</li>
-<li> ( i++) 把 i 的值压入操作数栈，此时 i=3</li>
-<li> ( i++) i 变量自增1,故操作栈中i=3，局部变量i=4;</li>
-<li> (++i * i++) 把操作数栈中前两个弹出求乘积结果再压入栈,故此时操作栈中 i 均为3，乘积为9</li>
-<li>（i + ++i * i++）把操作数栈中的值弹出求和再赋值给k，i从开始赋值为操作栈中数据为2，(++i * i++) 乘积为9，故2 + 9 = 11；</li>
-</ol>
-</li>
+<h3 id="DBMS"><a href="#DBMS" class="headerlink" title="DBMS"></a>DBMS</h3><ul>
+<li>数据库管理系统（DataBase Manager System）。数据库管理系统，又称为数据库软件（产品），用于管理DB中的数据。</li>
+<li>常见的数据库管理系统：MySQL、Oracle、DB2、SqlServer等。</li>
 </ul>
-</li>
-<li><p>总结</p>
-<ul>
-<li>赋值=，最后计算</li>
-<li>=右边的从左到右加载值一次压入操作栈</li>
-<li>实际先算哪个，看运算符优先级</li>
-<li>自增、自减操作都是直接修改变量的值，不经过操作栈</li>
-<li>最后的赋值之前，临时结果也是存储在操作数栈中</li>
+<h3 id="SQL"><a href="#SQL" class="headerlink" title="SQL"></a>SQL</h3><ul>
+<li>结构化查询语言（Structure Query Language）: 组织化查询语言，用于和DBMS通信的语言。</li>
 </ul>
-</li>
+<h2 id="SQL的优点"><a href="#SQL的优点" class="headerlink" title="SQL的优点"></a>SQL的优点</h2><ol>
+<li>不是某个特定数据库供应商专门的语言，几乎所有DBMS都支持SQL。</li>
+<li>简单易学。</li>
+<li>虽然简单，但实际上是一种强有力的语言，灵活使用其语言元素，可以进行非常复杂和高级的数据库操作。</li>
 </ol>
+<h2 id="存储数据特点"><a href="#存储数据特点" class="headerlink" title="存储数据特点"></a>存储数据特点</h2><ol>
+<li>将数据放到表中，表在存放库中。</li>
+<li>一个数据库中可以有多张表，每个表都有一个名字，用于标识自己。表明具有唯一性。</li>
+<li>表具有一些特性，这些特性定义了数据在表中如何存储，类似有java中”类“的设计。</li>
+<li>表由别组成，我们也成为了字段。每个表都是由一个或者多个列组成的，每一列类似java中的“属性”。</li>
+<li>表中的数据是按照行存储的，每一行类似于java中的对象。</li>
+</ol>
+
       </section>
       <section class="extra">
         
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>chenguang</li>
-    <li><strong>本文链接：</strong><a href="http://example.com/2021/01/20/501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;20&#x2F;501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;20&#x2F;501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/03/04/701.Mysql%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%89%B9%E7%82%B9/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;04&#x2F;701.Mysql%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%89%B9%E7%82%B9&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;04&#x2F;701.Mysql%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%89%B9%E7%82%B9&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -273,12 +235,12 @@
 </section>
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">知识点</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2021/01/20/002.%E7%8E%AF%E5%A2%83-%E4%BD%BF%E7%94%A8vagrant%E5%BF%AB%E9%80%9F%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/"><i class="iconfont iconleft"></i>002-环境-使用vagrant快速创建Linux虚拟机</a>
-    <a href="/2021/01/19/001.%E9%A1%B9%E7%9B%AE%E4%BB%8B%E7%BB%8D/">001-实战电商项目<i class="iconfont iconright"></i></a>
+    <a href="/2021/03/04/702.Mysql%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/"><i class="iconfont iconleft"></i>Mysql常见命令</a>
+    <a href="/2021/02/22/012.%E5%88%86%E5%B8%83%E5%BC%8F%E7%BB%84%E4%BB%B6-SpringCloud%20Alibaba-Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/">011-分布式组件-SpringCloud Alibaba-Nacos注册中心<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -289,6 +251,11 @@
       <div class="col-xl-3">
         
           
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E5%8F%8A%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%89%B9%E7%82%B9"><span class="toc-text">Mysql相关概念及存储数据特点</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="toc-text">相关概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DB"><span class="toc-text">DB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DBMS"><span class="toc-text">DBMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL"><span class="toc-text">SQL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-text">SQL的优点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E7%89%B9%E7%82%B9"><span class="toc-text">存储数据特点</span></a></li></ol></li></ol>
+  </aside>
+
         
       </div>
     </div>

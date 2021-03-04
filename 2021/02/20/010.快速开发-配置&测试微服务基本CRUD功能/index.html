@@ -1,0 +1,381 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>010-快速开发-配置&amp;测试微服务基本CRUD功能 - chenguang-blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content=", 快速开发">
+  <meta name="description" content="快速开发-配置&amp;测试微服务基本CRUD功能
+
+...">
+  <meta name="author" content="chenguang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg',
+        wechat: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/wei.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '人生只似风前絮，欢也零星，悲也零星，都作连江点点萍！',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">010-快速开发-配置&amp;测试微服务基本CRUD功能</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 记录</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">010-快速开发-配置&amp;测试微服务基本CRUD功能</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 20, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2999</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="快速开发-配置-amp-测试微服务基本CRUD功能"><a href="#快速开发-配置-amp-测试微服务基本CRUD功能" class="headerlink" title="快速开发-配置&amp;测试微服务基本CRUD功能"></a>快速开发-配置&amp;测试微服务基本CRUD功能</h1><h2 id="服务整合mybatis-plus"><a href="#服务整合mybatis-plus" class="headerlink" title="服务整合mybatis-plus"></a>服务整合mybatis-plus</h2><h3 id="导入依赖，上章节已经导入到common服务中"><a href="#导入依赖，上章节已经导入到common服务中" class="headerlink" title="导入依赖，上章节已经导入到common服务中"></a>导入依赖，上章节已经导入到common服务中</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- mybatis-plus --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.baomidou&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mybatis-plus-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.4.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h4 id="配置数据源；"><a href="#配置数据源；" class="headerlink" title="配置数据源；"></a>配置数据源；</h4><ol>
+<li>导入数据库的驱动</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">因为所有服务都需要数据库驱动，则再common服务中引入</span><br><span class="line">&lt;!-- 导入mysql驱动 --&gt;</span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;8.0.19&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>在 application.yml 配置数据源相关信息</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    username: root</span><br><span class="line">    password: root</span><br><span class="line">    url: jdbc:mysql:&#x2F;&#x2F;192.168.56.10:3306&#x2F;lightmall_pms</span><br><span class="line">    driver-class-name: com.mysql.jdbc.Driver</span><br><span class="line">server:</span><br><span class="line">  port: 7000</span><br></pre></td></tr></table></figure>
+<h4 id="配置MyBatis-Plus"><a href="#配置MyBatis-Plus" class="headerlink" title="配置MyBatis-Plus"></a>配置MyBatis-Plus</h4><ol>
+<li><p>配置扫描mapper地址 ，使用@MapperScan(“”)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">package com.light.lightmall.product;</span><br><span class="line"></span><br><span class="line">import org.mybatis.spring.annotation.MapperScan;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line">@MapperScan(&quot;com.light.lightmall.product.dao&quot;)</span><br><span class="line">@SpringBootApplication</span><br><span class="line">public class LightmallProductApplication &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(LightmallProductApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>告诉mybatis-plus，sql映射文件位置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mybatis-plus:</span><br><span class="line">  mapper-locations: classpath*:&#x2F;mapper&#x2F;**&#x2F;*.xml</span><br><span class="line">  global-config:</span><br><span class="line">    db-config:</span><br><span class="line">      id-type: auto</span><br></pre></td></tr></table></figure>
+<h2 id="进行单元测试"><a href="#进行单元测试" class="headerlink" title="进行单元测试"></a>进行单元测试</h2></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">package com.light.lightmall.product;</span><br><span class="line"></span><br><span class="line">import com.baomidou.mybatisplus.core.conditions.Wrapper;</span><br><span class="line">import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;</span><br><span class="line">import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;</span><br><span class="line">import com.light.lightmall.product.entity.BrandEntity;</span><br><span class="line">import com.light.lightmall.product.service.BrandService;</span><br><span class="line">import org.junit.jupiter.api.Test;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"></span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">@SpringBootTest</span><br><span class="line">class LightmallProductApplicationTests &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    BrandService brandService;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    void contextLoads() &#123;</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; BrandEntity brandEntity &#x3D; new BrandEntity();</span><br><span class="line">        &#x2F;&#x2F; brandEntity.setName(&quot;华为&quot;);</span><br><span class="line">        &#x2F;&#x2F; brandService.save(brandEntity);</span><br><span class="line">        &#x2F;&#x2F; System.out.println(&quot;保存成功....&quot;);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; BrandEntity brandEntity &#x3D; new BrandEntity();</span><br><span class="line">        &#x2F;&#x2F; brandEntity.setBrandId(1L);</span><br><span class="line">        &#x2F;&#x2F; brandEntity.setDescript(&quot;描述&quot;);</span><br><span class="line">        &#x2F;&#x2F; brandService.updateById(brandEntity);</span><br><span class="line"></span><br><span class="line">        List&lt;BrandEntity&gt; brandEntities &#x3D; brandService.list(new QueryWrapper&lt;BrandEntity&gt;().eq(&quot;brand_id&quot;, 1L));</span><br><span class="line">        brandEntities.forEach(item -&gt;&#123;</span><br><span class="line">            System.out.println(item);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chenguang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/02/20/010.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE&%E6%B5%8B%E8%AF%95%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E6%9C%ACCRUD%E5%8A%9F%E8%83%BD/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;02&#x2F;20&#x2F;010.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE&amp;%E6%B5%8B%E8%AF%95%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E6%9C%ACCRUD%E5%8A%9F%E8%83%BD&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;02&#x2F;20&#x2F;010.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE&amp;%E6%B5%8B%E8%AF%95%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E6%9C%ACCRUD%E5%8A%9F%E8%83%BD&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E6%95%B4%E5%90%88mybatis-plus/" rel="tag">项目结构，整合mybatis-plus</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/02/22/011.%E5%BE%AE%E6%9C%8D%E5%8A%A1SpringCloud%E7%AE%80%E4%BB%8B/"><i class="iconfont iconleft"></i>011-微服务SpringCloud简介</a>
+    <a href="/2021/02/20/009.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91-%E4%BA%BA%E4%BA%BA%E5%BC%80%E6%BA%90%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">009-快速开发-人人开源搭建后台管理系统<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE-amp-%E6%B5%8B%E8%AF%95%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E6%9C%ACCRUD%E5%8A%9F%E8%83%BD"><span class="toc-text">快速开发-配置&amp;测试微服务基本CRUD功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%95%B4%E5%90%88mybatis-plus"><span class="toc-text">服务整合mybatis-plus</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E4%BE%9D%E8%B5%96%EF%BC%8C%E4%B8%8A%E7%AB%A0%E8%8A%82%E5%B7%B2%E7%BB%8F%E5%AF%BC%E5%85%A5%E5%88%B0common%E6%9C%8D%E5%8A%A1%E4%B8%AD"><span class="toc-text">导入依赖，上章节已经导入到common服务中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">进行单元测试</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/izhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,424 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>011-微服务SpringCloud简介 - chenguang-blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content=", SpringCloud">
+  <meta name="description" content="微服务SpringCloud简介
+
+
+微服务Sprin...">
+  <meta name="author" content="chenguang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg',
+        wechat: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/wei.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '人生只似风前絮，欢也零星，悲也零星，都作连江点点萍！',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'url',
+        image: 'https://pic.izhaoo.com/weapp-code.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">011-微服务SpringCloud简介</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 记录</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/08.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">011-微服务SpringCloud简介</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 22, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1851</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="微服务SpringCloud简介"><a href="#微服务SpringCloud简介" class="headerlink" title="微服务SpringCloud简介"></a>微服务SpringCloud简介</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><h3 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h3><ul>
+<li><strong>单个轻量级服务一般为一个单独微服务，微服务讲究的是 专注某个功能的实现，比如登录系统只专注于用户登录方面功能的实现，讲究的是职责单一，开箱即用，可以独立运行。微服务架构系统是一个分布式的系统，按照业务进行划分服务单元模块，解决单个系统的不足，满足越来越复杂的业务需求。</strong></li>
+</ul>
+<h3 id="微服务优缺点"><a href="#微服务优缺点" class="headerlink" title="微服务优缺点"></a>微服务优缺点</h3><ul>
+<li><p><strong>优点</strong>：</p>
+<ol>
+<li>服务拆分力度更细，有利于资源重复利用，有利于提高开发效率</li>
+<li>可以更精准的制定优化服务方案，提高系统额可维护性</li>
+<li>微服务架构采用去中心化思想，服务之间采用Restful等轻量级通讯</li>
+<li>适用于富连网时代，产品迭代周期更短</li>
+</ol>
+</li>
+<li><p><strong>缺点</strong>：</p>
+<ol>
+<li>微服务过多，治理成本高，不利于维护系统</li>
+<li>分布式系统开发的成本高（容错，分布式事务等）对团队挑战大</li>
+</ol>
+</li>
+</ul>
+<h3 id="微服务之间如何独立通讯的？"><a href="#微服务之间如何独立通讯的？" class="headerlink" title="微服务之间如何独立通讯的？"></a>微服务之间如何独立通讯的？</h3><ul>
+<li><strong>同步通信：</strong>Dubbo通过RPC远程过程调用、SpringCloud通过Rest接口json调用</li>
+<li><strong>异步通信：</strong>消息队列，如：RabbitMq、ActiveMQ、Kafka等</li>
+</ul>
+<h3 id="SpringCloud和Dubbo有哪些区别？"><a href="#SpringCloud和Dubbo有哪些区别？" class="headerlink" title="SpringCloud和Dubbo有哪些区别？"></a>SpringCloud和Dubbo有哪些区别？</h3><ul>
+<li><strong>相同点：</strong>都是分布式管理框架</li>
+<li><strong>不同点：</strong><ol>
+<li>SpringCloud抛弃的Dubbo的RPC通信，采用的是基于HTTP的REST方式。    </li>
+<li>dobbo是二进制传输，占用宽带会少一些。SringCloud是http传输，宽带会多一点，同时使用http协议一般会使用JSON报文，消耗会更大。</li>
+<li>dubbo开发难度较大，所依赖的jar包有很多问题大型工程无法解决。SpringCloud对第三方的集成可以一键式生成，天然集成。</li>
+<li>SpringCloud接口协议确定比较松散，需要强有力的行政措施来限制接口无序升级</li>
+</ol>
+</li>
+</ul>
+<h3 id="SpringBoot和SpringCloud之前关系"><a href="#SpringBoot和SpringCloud之前关系" class="headerlink" title="SpringBoot和SpringCloud之前关系"></a>SpringBoot和SpringCloud之前关系</h3><ul>
+<li>SpringBoot：专注于快速方便的开发单体个个体微服务；SpringCloud：关注全局的微服务协调治理框架，将SpringCloud不可以离开SpringBoot的依赖关系</li>
+</ul>
+<h2 id="SpringCloud-Alibaba"><a href="#SpringCloud-Alibaba" class="headerlink" title="SpringCloud Alibaba"></a>SpringCloud Alibaba</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><ul>
+<li>SpringCloud Alibaba 致力于提供<strong>微服务开发的一站式解决方案</strong>。此项目包含开发分布式应用微服务的必需组件，方便开发者通过SpringCloud编程模型轻松使用这些组件来开发分布式应用服务</li>
+<li>依托 SpringCloud Alibaba，只需要添加一些注解和少量配置，就可以将SpringCloud应用接入阿里微服务解决方案，通过阿里中间件来迅速搭建分布式应用系统</li>
+</ul>
+<h3 id="为什么使用SpringCloud-Alibaba"><a href="#为什么使用SpringCloud-Alibaba" class="headerlink" title="为什么使用SpringCloud Alibaba"></a>为什么使用SpringCloud Alibaba</h3><ul>
+<li><strong>SpringCloud痛点：</strong><ol>
+<li>SpringCloud 部分组件停止维护和更新，给开发带来不便；</li>
+<li>SpringCloud 部分环境搭建复杂，没有完善的可视化界面，我们需要大量的二次开发和定制</li>
+<li>SpringCloud 配置复杂，难以上手，部分配置差别难以区分和合理应用</li>
+</ol>
+</li>
+<li><strong>SpringCloudAlibaba 的优势</strong><ol>
+<li>阿里使用过的组件经历了考验，性能强悍，设计合理，现在开源出来大家用</li>
+<li>成套的产品搭配完善的可视化界面给开发运维带来极大的便利</li>
+<li>搭建简单，学习曲线低</li>
+</ol>
+</li>
+</ul>
+<h3 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h3><ul>
+<li><p>添加依赖,添加至我们common服务中，共用依赖</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;com.alibaba.cloud&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;spring-cloud-alibaba-dependencies&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;2.2.5.RELEASE&lt;&#x2F;version&gt;</span><br><span class="line">            &lt;type&gt;pom&lt;&#x2F;type&gt;</span><br><span class="line">            &lt;scope&gt;import&lt;&#x2F;scope&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;dependencyManagement&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chenguang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/02/22/011.%E5%BE%AE%E6%9C%8D%E5%8A%A1SpringCloud%E7%AE%80%E4%BB%8B/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;02&#x2F;22&#x2F;011.%E5%BE%AE%E6%9C%8D%E5%8A%A1SpringCloud%E7%AE%80%E4%BB%8B&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;02&#x2F;22&#x2F;011.%E5%BE%AE%E6%9C%8D%E5%8A%A1SpringCloud%E7%AE%80%E4%BB%8B&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SpringCloud%EF%BC%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">SpringCloud，微服务</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/02/22/012.%E5%88%86%E5%B8%83%E5%BC%8F%E7%BB%84%E4%BB%B6-SpringCloud%20Alibaba-Nacos%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83/"><i class="iconfont iconleft"></i>011-分布式组件-SpringCloud Alibaba-Nacos注册中心</a>
+    <a href="/2021/02/20/010.%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91-%E9%85%8D%E7%BD%AE&%E6%B5%8B%E8%AF%95%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E6%9C%ACCRUD%E5%8A%9F%E8%83%BD/">010-快速开发-配置&测试微服务基本CRUD功能<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1SpringCloud%E7%AE%80%E4%BB%8B"><span class="toc-text">微服务SpringCloud简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B"><span class="toc-text">简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-text">什么是微服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">微服务优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B9%8B%E9%97%B4%E5%A6%82%E4%BD%95%E7%8B%AC%E7%AB%8B%E9%80%9A%E8%AE%AF%E7%9A%84%EF%BC%9F"><span class="toc-text">微服务之间如何独立通讯的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringCloud%E5%92%8CDubbo%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">SpringCloud和Dubbo有哪些区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SpringBoot%E5%92%8CSpringCloud%E4%B9%8B%E5%89%8D%E5%85%B3%E7%B3%BB"><span class="toc-text">SpringBoot和SpringCloud之前关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SpringCloud-Alibaba"><span class="toc-text">SpringCloud Alibaba</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8SpringCloud-Alibaba"><span class="toc-text">为什么使用SpringCloud Alibaba</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="toc-text">使用说明</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/izhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
