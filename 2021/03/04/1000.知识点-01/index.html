@@ -6,14 +6,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>003-环境-linux安装docker - chenguang-blog</title>
+  <title>1000.知识点-01 - chenguang-blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
-  <meta name="keywords" content=", linux，docker">
-  <meta name="description" content="环境-linux安装docker
-
-环境-虚拟机网络设...">
+  <meta name="keywords" content=", 知识点-01">
+  <meta name="description" content="知识点-01排序算法冒泡排序
+​    每次拿两个数进...">
   <meta name="author" content="chenguang">
   <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
   <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
@@ -137,7 +136,7 @@
         <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
       
     </div>
-    <div class="center">003-环境-linux安装docker</div>
+    <div class="center">1000.知识点-01</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -178,89 +177,45 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/09.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">003-环境-linux安装docker</h1>
+    <h1 class="head-title">1000.知识点-01</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 21, 2021</span>
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 04, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1166</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1124</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p>环境-虚拟机网络设置</p>
-<ol>
-<li><p>​    Docker 简介</p>
-<ul>
-<li>虚拟化容器技术。Docker基于镜像，可以秒级启动各种容器。每一种容器都是一个完成的运行环境，容器之间相互隔离</li>
-<li>docker 镜像网站：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></li>
-<li>docker 官网文档：<a target="_blank" rel="noopener" href="https://docs.docker.com/">https://docs.docker.com/</a></li>
-<li>docker centos 安装文档地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/centos/">https://docs.docker.com/engine/install/centos/</a></li>
+        <h1 id="知识点-01"><a href="#知识点-01" class="headerlink" title="知识点-01"></a>知识点-01</h1><h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><ul>
+<li>​    每次拿两个数进行比较，总是把小的放在最前面，大的放在最后面，第二次是第二个数和第三个数比较，如果第三个小于第二个，那么第三个和第二个替换未知，依次这样比较替换，第一轮循环完了，放在最后面的那个数就是这一串数字中最大的数。第二轮循环和第一轮一样，第一个和第二个比较，最小的放在最前面，依次类推，如果有10个数，那么久循环9此，最小的在最前面，最大的在最后面。</li>
 </ul>
-</li>
-<li><p>docker 常用命令</p>
-<table>
-<thead>
-<tr>
-<th align="center">命令</th>
-<th align="center">作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">docker -v</td>
-<td align="center">查看Docker版本</td>
-</tr>
-<tr>
-<td align="center">docker image</td>
-<td align="center">检查当前虚拟机下载镜像</td>
-</tr>
-<tr>
-<td align="center">docker ps</td>
-<td align="center">查看运行程序</td>
-</tr>
-<tr>
-<td align="center">docker exec -it * /bin/bash</td>
-<td align="center">进入*容器内部</td>
-</tr>
-<tr>
-<td align="center">docker restart *</td>
-<td align="center">重启</td>
-</tr>
-</tbody></table>
-</li>
-</ol>
-<ol start="3">
-<li><p>安装</p>
-<ul>
-<li><p>首先卸载旧版本的docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum remove docker \</span><br><span class="line">                  docker-client \</span><br><span class="line">                  docker-client-latest \</span><br><span class="line">                  docker-common \</span><br><span class="line">                  docker-latest \</span><br><span class="line">                  docker-latest-logrotate \</span><br><span class="line">                  docker-logrotate \</span><br><span class="line">                  docker-engine</span><br></pre></td></tr></table></figure></li>
-<li><p>安装yum-utils包并设置稳定存储库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install -y yum-utils</span><br><span class="line"></span><br><span class="line">$ sudo yum-config-manager \</span><br><span class="line">    --add-repo \</span><br><span class="line">    https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;centos&#x2F;docker-ce.repo</span><br></pre></td></tr></table></figure></li>
-<li><p>安装docker 引擎</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo yum install docker-ce docker-ce-cli containerd.io</span><br><span class="line">提示 Is this ok [y&#x2F;d&#x2F;N]: 输入y继续 </span><br></pre></td></tr></table></figure></li>
-<li><p>启动docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure></li>
-<li><p>检查docker</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
-<p>此命令下载测试映像并在容器中运行它。当容器运行时，它打印一条信息消息并退出。</p>
-</li>
-<li><p>设置docker 开机自启动</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable docker</span><br></pre></td></tr></table></figure>
-
-
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><ul>
+<li><p>​    二分查找就是从一串数字中找到某个数字。</p>
+<p>​    原理就是必须有一串从小到大的排序，吧这串数字进行划分，分为三段，前半段，中止段，和中止后半段。查找数字或者字符先从中止段查找，查到的数字或者字符和中止真好相等，那么就直接取出来，如果比它大就从后半段查找，后半段在进行二分法，进行递归的调用查找，如果比中止小，走前面的中止段，在进行拆分，进行二分查找法。</p>
 </li>
 </ul>
-</li>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
+<li>​    对于Spring的话，不管是使用ssh还是使用ssm，都离不开它，它的一大优势就是可以真核其他框架。咱们先谈spring核心思想，有三个，DI依赖注入，IOC控制反转，AOP面向切面编程<ol>
+<li><strong>依赖注入：</strong>再之前的开发，如果想穿件一个对象，就new一个，如果想这个对象中定义其他的变量或者对象，就在对象内部创建一个成员变量，但是在spring中，咱么可以在配置文件中配置一个bean，指定对应的全路径名称。如果想用这个类的对象，在代码中读取这个配置文件，然后就可以直接获取到这个类的对象，当前使用注解的话，更方便，如果想在某个对象中注入某些属性，可以给一个property的属性，这个就是注入</li>
+<li><strong>控制反转：</strong>对于控制翻转，和DI是一个道理，也是指我们不需要new对象，可以直接从配置文件中将对象取出，通过反射的方式</li>
+<li><strong>AOP：</strong>面向切面编程，把传统程序执行过程看成纵向执行过程，每个方法当做一个点，基于这些点可以进行增强处理，形成了纵向的切面，包含了原有方法和增强方法，不改变原有代码结构，增添额外功能，常用于事务管理、日志发音等，其实Spring的AOP就是对代理设计模式的一种实现</li>
 </ol>
+</li>
+</ul>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><ul>
+<li>​    现在大部分公司都使用的分布式架构，我们根据模块来把项目才分成一个个的工程，这样我们各个模块之前的耦合度就降低了，然后我们各个模块之前通过接口来相互通讯，我们公司用的是dobbo来实现项目之前的通讯，这个我们的代码拓展性就更好了，最后我们在部署项目的时候，可以根据用户的访问量来给各个模块的服务器增大配置，我们还可以采用nginx负载均衡实现一个反向代理，当用户请求后台服务器的时候，由nginx来决定那台服务空闲或者压力小，来让用户访问，防止高并发</li>
+</ul>
+
       </section>
       <section class="extra">
         
           <ul class="copyright">
   
     <li><strong>本文作者：</strong>chenguang</li>
-    <li><strong>本文链接：</strong><a href="http://example.com/2021/01/21/003.%E7%8E%AF%E5%A2%83-linux%E5%AE%89%E8%A3%85docker/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;21&#x2F;003.%E7%8E%AF%E5%A2%83-linux%E5%AE%89%E8%A3%85docker&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;01&#x2F;21&#x2F;003.%E7%8E%AF%E5%A2%83-linux%E5%AE%89%E8%A3%85docker&#x2F;index.html</a></li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/03/04/1000.%E7%9F%A5%E8%AF%86%E7%82%B9-01/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;04&#x2F;1000.%E7%9F%A5%E8%AF%86%E7%82%B9-01&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;04&#x2F;1000.%E7%9F%A5%E8%AF%86%E7%82%B9-01&#x2F;index.html</a></li>
     <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
   
 </ul>
@@ -277,12 +232,12 @@
 </section>
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%8Cdocker/" rel="tag">虚拟机，docker</a></li></ul> 
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">知识点</a></li></ul> 
 
         
   <nav class="nav">
-    <a href="/2021/01/21/004.%E7%8E%AF%E5%A2%83-%E9%85%8D%E7%BD%AEdocker%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%E5%99%A8/"><i class="iconfont iconleft"></i>004-环境-配置docker阿里云镜像加速器</a>
-    <a href="/2021/01/21/502.Singleton%20%E5%8D%95%E4%BE%8B/">502-singleton单例<i class="iconfont iconright"></i></a>
+    <a></a>
+    <a href="/2021/03/04/702.Mysql%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4/">702.Mysql常见命令<i class="iconfont iconright"></i></a>
   </nav>
 
       </section>
@@ -293,6 +248,11 @@
       <div class="col-xl-3">
         
           
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%A5%E8%AF%86%E7%82%B9-01"><span class="toc-text">知识点-01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="toc-text">排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F"><span class="toc-text">冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE"><span class="toc-text">二分查找</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring"><span class="toc-text">Spring</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">分布式</span></a></li></ol></li></ol>
+  </aside>
+
         
       </div>
     </div>
