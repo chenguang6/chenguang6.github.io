@@ -177,28 +177,28 @@
       <div class="col-xl-6"><article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/13.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/08.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">1000.知识点-01</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 04, 2021</span>
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1124</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1973</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         <h1 id="知识点-01"><a href="#知识点-01" class="headerlink" title="知识点-01"></a>知识点-01</h1><h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><ul>
-<li>​    每次拿两个数进行比较，总是把小的放在最前面，大的放在最后面，第二次是第二个数和第三个数比较，如果第三个小于第二个，那么第三个和第二个替换未知，依次这样比较替换，第一轮循环完了，放在最后面的那个数就是这一串数字中最大的数。第二轮循环和第一轮一样，第一个和第二个比较，最小的放在最前面，依次类推，如果有10个数，那么久循环9此，最小的在最前面，最大的在最后面。</li>
-</ul>
-<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><ul>
+<li><p>​    每次拿两个数进行比较，总是把小的放在最前面，大的放在最后面，第二次是第二个数和第三个数比较，如果第三个小于第二个，那么第三个和第二个替换未知，依次这样比较替换，第一轮循环完了，放在最后面的那个数就是这一串数字中最大的数。第二轮循环和第一轮一样，第一个和第二个比较，最小的放在最前面，依次类推，如果有10个数，那么久循环9此，最小的在最前面，最大的在最后面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> int[] arr &#x3D; &#123;46, 3, 2, 45, 33, 12&#125;;</span><br><span class="line"> </span><br><span class="line"> for (int i &#x3D; 0; i &lt; arr.length - 1; i++) &#123;</span><br><span class="line"> 	int k &#x3D; i;</span><br><span class="line"></span><br><span class="line">	for (int j &#x3D; k + 1; j &lt; arr.length; j++) &#123;</span><br><span class="line">		if (arr[j] &lt; arr[k]) &#123;</span><br><span class="line">			k &#x3D; j;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	if (i !&#x3D; k) &#123;</span><br><span class="line">		int temp &#x3D; arr[i];</span><br><span class="line">		arr[i] &#x3D; arr[k];</span><br><span class="line">		arr[k] &#x3D; temp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3></li>
 <li><p>​    二分查找就是从一串数字中找到某个数字。</p>
 <p>​    原理就是必须有一串从小到大的排序，吧这串数字进行划分，分为三段，前半段，中止段，和中止后半段。查找数字或者字符先从中止段查找，查到的数字或者字符和中止真好相等，那么就直接取出来，如果比它大就从后半段查找，后半段在进行二分法，进行递归的调用查找，如果比中止小，走前面的中止段，在进行拆分，进行二分查找法。</p>
-</li>
-</ul>
-<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2><ul>
-<li>​    对于Spring的话，不管是使用ssh还是使用ssm，都离不开它，它的一大优势就是可以真核其他框架。咱们先谈spring核心思想，有三个，DI依赖注入，IOC控制反转，AOP面向切面编程<ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int recursionBinarySearch(int[] arr, int key, int low, int high) &#123;</span><br><span class="line">	if (key &lt; arr[low] || key &gt; arr[high] || low &gt; high) &#123;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	int middle &#x3D; (low + high) &#x2F; 2;</span><br><span class="line">	if (arr[middle] &gt; key) &#123;</span><br><span class="line">		return recursionBinarySearch(arr, key, low, middle - 1);</span><br><span class="line">	&#125; else if (arr[middle] &lt; key) &#123;</span><br><span class="line">		return recursionBinarySearch(arr, key, middle + 1, high);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return middle;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h2></li>
+<li><p>​    对于Spring的话，不管是使用ssh还是使用ssm，都离不开它，它的一大优势就是可以真核其他框架。咱们先谈spring核心思想，有三个，DI依赖注入，IOC控制反转，AOP面向切面编程</p>
+<ol>
 <li><strong>依赖注入：</strong>再之前的开发，如果想穿件一个对象，就new一个，如果想这个对象中定义其他的变量或者对象，就在对象内部创建一个成员变量，但是在spring中，咱么可以在配置文件中配置一个bean，指定对应的全路径名称。如果想用这个类的对象，在代码中读取这个配置文件，然后就可以直接获取到这个类的对象，当前使用注解的话，更方便，如果想在某个对象中注入某些属性，可以给一个property的属性，这个就是注入</li>
 <li><strong>控制反转：</strong>对于控制翻转，和DI是一个道理，也是指我们不需要new对象，可以直接从配置文件中将对象取出，通过反射的方式</li>
 <li><strong>AOP：</strong>面向切面编程，把传统程序执行过程看成纵向执行过程，每个方法当做一个点，基于这些点可以进行增强处理，形成了纵向的切面，包含了原有方法和增强方法，不改变原有代码结构，增添额外功能，常用于事务管理、日志发音等，其实Spring的AOP就是对代理设计模式的一种实现</li>
