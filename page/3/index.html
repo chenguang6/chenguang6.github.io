@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>标签 - chenguang-blog</title>
+  <title>chenguang-blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -57,7 +57,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: false,
+      isHome: true,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -126,24 +126,6 @@
   
 
 
-  <nav class="navbar">
-    <div class="left">
-      
-        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
-      
-      
-        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
-      
-    </div>
-    <div class="center">标签</div>
-    <div class="right">
-      <i class="iconfont iconmenu j-navbar-menu"></i>
-    </div>
-    
-      <div id="qrcode-navbar"></div>
-    
-  </nav>
-
   
 
 <nav class="menu">
@@ -158,7 +140,7 @@
       </li><li class="menu-item">
         <a href="/archives/ " class="underline "> 归档</a>
       </li><li class="menu-item">
-        <a href="/tags/ " class="underline active"> 标签</a>
+        <a href="/tags/ " class="underline "> 标签</a>
       </li><li class="menu-item">
         <a href="/categories/ " class="underline "> 分类</a>
       </li><li class="menu-item">
@@ -170,15 +152,121 @@
   </div>
 </nav>
   <main id="main">
-  <section class="tags">
-    <header class="header">
-  <h1 class="header-title">标签</h1>
-  <p class="header-subtitle">共: 20 个</p>
-</header>
-    <div class="tags-container">
-      <a href="/tags/Hexo/" style="font-size: 14px; color: #666">Hexo</a> <a href="/tags/Mysql/" style="font-size: 25px; color: #444">Mysql</a> <a href="/tags/SpringCloud%EF%BC%8CNacos/" style="font-size: 14px; color: #666">SpringCloud，Nacos</a> <a href="/tags/SpringCloud%EF%BC%8C%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 14px; color: #666">SpringCloud，微服务</a> <a href="/tags/linux/" style="font-size: 36px; color: #212121">linux</a> <a href="/tags/m/" style="font-size: 14px; color: #666">m</a> <a href="/tags/redis/" style="font-size: 14px; color: #666">redis</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 14px; color: #666">博客</a> <a href="/tags/%E5%AE%9E%E6%88%98%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/" style="font-size: 14px; color: #666">实战电商项目</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91/" style="font-size: 14px; color: #666">微信开发</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%8F%91%EF%BC%8C%E4%BA%BA%E4%BA%BA%E5%BC%80%E6%BA%90/" style="font-size: 14px; color: #666">快速开发，人人开源</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%9D%E5%A7%8B%E5%8C%96%E8%AE%BE%E8%AE%A1/" style="font-size: 14px; color: #666">数据初始化设计</a> <a href="/tags/%E7%8E%AF%E5%A2%83/" style="font-size: 14px; color: #666">环境</a> <a href="/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 36px; color: #212121">知识点</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 14px; color: #666">虚拟机</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%8Cdocker/" style="font-size: 25px; color: #444">虚拟机，docker</a> <a href="/tags/%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F/" style="font-size: 14px; color: #666">镜像加速</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 14px; color: #666">项目</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E6%95%B4%E5%90%88mybatis-plus/" style="font-size: 14px; color: #666">项目结构，整合mybatis-plus</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E7%A0%81%E4%BA%91/" style="font-size: 14px; color: #666">项目结构，码云</a>
+  
+    <div class="preview">
+  <nav class="navbar j-navbar-menu">
+    <i class="iconfont iconmenu"></i>
+  </nav>
+  <div class="preview-image">
+    <h2 class="preview-motto" id="motto">人生只似风前絮，欢也零星，悲也零星，都作连江点点萍！</h2>
+    <!-- <span class="preview-cursor">|</span> -->
+    
+      <div class="preview-overlay">
+        <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="preview-parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(var(--color-background-rgb),0.7"></use>
+            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(var(--color-background-rgb),0.5)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(var(--color-background-rgb),0.3)"></use>
+            <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-background)"></use>
+          </g>
+        </svg>
+      </div>
+    
+  </div>
+  <div class="preview-scroll">
+    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
+  </div>
+</div>
+  
+  <div class="container" id="container">
+    <section class="row post">
+  
+    
+
+<div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2021/01/21/502.Singleton%20%E5%8D%95%E4%BE%8B/" class="post-image">
+      <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/12.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <div class="post-content-wrap">
+        <h3 class="post-title"><a href="/2021/01/21/502.Singleton%20%E5%8D%95%E4%BE%8B/" title="502-singleton单例" >502-singleton单例</a></h3>
+        <div class="post-excerpt">
+          <p class="substr-3">Singleton单例单例说明</p>
+        </div>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 21, 2021</span>
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>2351</span>
+      </div>
     </div>
-  </section>
+  </div>
+</div>
+
+  
+    
+
+<div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2021/01/20/002.%E7%8E%AF%E5%A2%83-%E4%BD%BF%E7%94%A8vagrant%E5%BF%AB%E9%80%9F%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="post-image">
+      <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/11.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <div class="post-content-wrap">
+        <h3 class="post-title"><a href="/2021/01/20/002.%E7%8E%AF%E5%A2%83-%E4%BD%BF%E7%94%A8vagrant%E5%BF%AB%E9%80%9F%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA/" title="002-环境-使用vagrant快速创建Linux虚拟机" >002-环境-使用vagrant快速创建Linux虚拟机</a></h3>
+        <div class="post-excerpt">
+          <p class="substr-3">环境-使用vagrant快速创建虚拟机</p>
+        </div>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 20, 2021</span>
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>4770</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+    
+
+<div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2021/01/20/501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E/" class="post-image">
+      <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/05.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <div class="post-content-wrap">
+        <h3 class="post-title"><a href="/2021/01/20/501.%E8%87%AA%E5%A2%9E%E5%8F%98%E9%87%8F%E8%AF%B4%E6%98%8E/" title="501-自增变量说明" >501-自增变量说明</a></h3>
+        <div class="post-excerpt">
+          <p class="substr-3">知识点-自增变量自增变量说明</p>
+        </div>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 20, 2021</span>
+        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>863</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+</section>
+    <section class="paginator">
+  
+    <a class="extend prev" rel="prev" href="/page/2/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  
+</section>
+  </div>
 </main>
   
 

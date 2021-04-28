@@ -1,0 +1,441 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>704.Mysql查询语句二 - chenguang-blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content=", 查询语句">
+  <meta name="description" content="Mysql查询语句-第二讲常见函数：字符函数：​   ...">
+  <meta name="author" content="chenguang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg',
+        wechat: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/wei.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '人生只似风前絮，欢也零星，悲也零星，都作连江点点萍！',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'image',
+        image: 'https://light-mall.oss-cn-beijing.aliyuncs.com/light-shop/公众号二维码.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">704.Mysql查询语句二</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 记录</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/03.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">704.Mysql查询语句二</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 09, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5479</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Mysql查询语句-第二讲"><a href="#Mysql查询语句-第二讲" class="headerlink" title="Mysql查询语句-第二讲"></a>Mysql查询语句-第二讲</h1><h2 id="常见函数："><a href="#常见函数：" class="headerlink" title="常见函数："></a>常见函数：</h2><h3 id="字符函数："><a href="#字符函数：" class="headerlink" title="字符函数："></a>字符函数：</h3><p>​        <strong>length ：获取字符串字节数函数</strong><br>​        <strong>concat：合并字符串函数</strong><br>​        <strong>substr：字符串截取</strong><br>​        <strong>instr：字符查找函数</strong><br>​        <strong>trim：去除左空格函数</strong><br>​        <strong>upper ：字母大写转换函数</strong><br>​        <strong>lower ：字母大写转换函数**</strong><br>​        <strong>lpad：填充字符串左边</strong><br>​        <strong>rpad：填充字符串右边</strong><br>​        <strong>replace：字符串替换</strong></p>
+<h3 id="字数函数："><a href="#字数函数：" class="headerlink" title="字数函数："></a>字数函数：</h3><p>​        <strong>round：四舍五入函数</strong><br>​        <strong>ceil：向上取整函数</strong><br>​        <strong>floor : 向下取整函数</strong><br>​        <strong>truncate : 数值截取函数</strong><br>​        <strong>mod : 取模函数</strong></p>
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a><strong>日期函数</strong></h3><p>​        <strong>now : 获取当前日期时间</strong><br>​        <strong>crudate ：获取当前日期</strong><br>​        <strong>curtime：获取当前时间</strong><br>​        <strong>year：从日期中选择出周数</strong><br>​        <strong>month：从日期中选择出月份数</strong><br>​        <strong>monthname：指定日期的月份的全名</strong><br>​        <strong>day：返回给定日期的月份的</strong><br>​        <strong>hour：从时间中选择出小时数</strong><br>​        <strong>second：返回时间秒</strong><br>​        <strong>str_to_date：将时间格式的字符串</strong><br>​        <strong>date_format：将日期值格式化为特定格式</strong></p>
+<h3 id="其他函数"><a href="#其他函数" class="headerlink" title="其他函数"></a>其他函数</h3><p>​        <strong>version：查看mysql版本号</strong><br>​        <strong>database</strong><br>​        <strong>user</strong></p>
+<h2 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h2><ul>
+<li>语句：select 查询列表 from 表 where 赛选条件 order by 排序列表 【asc|desc】</li>
+<li>特点：<pre><code>    1、asc代表的是升序，desc代表的是降序；如果不写默认为升序
+      2、order by 子句中可以支持单个字段、多个字段、表达式、函数、别名
+      3、order by 字句一般是放在查询语句的最后，但limit子句除外</code></pre>
+</li>
+</ul>
+<h3 id="案例1-：查询员工信息，要求工资从到底排序"><a href="#案例1-：查询员工信息，要求工资从到底排序" class="headerlink" title="案例1 ：查询员工信息，要求工资从到底排序"></a>案例1 ：查询员工信息，要求工资从到底排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">order</span> <span class="keyword">by</span> salary <span class="keyword">desc</span>;</span><br><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">order</span> <span class="keyword">by</span> salary <span class="keyword">asc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="案例2：查询部门编号-gt-90-员工信息，按照入职时间的先后进行排序"><a href="#案例2：查询部门编号-gt-90-员工信息，按照入职时间的先后进行排序" class="headerlink" title="案例2：查询部门编号 &gt;= 90 员工信息，按照入职时间的先后进行排序"></a>案例2：查询部门编号 &gt;= 90 员工信息，按照入职时间的先后进行排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">WHERE</span> department_id <span class="operator">&gt;=</span> <span class="number">90</span> <span class="keyword">order</span> <span class="keyword">by</span> hiredate <span class="keyword">asc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="案例3：按年薪的高低显示员工的信息和年薪【按表达式排序】"><a href="#案例3：按年薪的高低显示员工的信息和年薪【按表达式排序】" class="headerlink" title="案例3：按年薪的高低显示员工的信息和年薪【按表达式排序】"></a>案例3：按年薪的高低显示员工的信息和年薪【按表达式排序】</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span>,salary<span class="operator">*</span><span class="number">12</span><span class="operator">*</span>(<span class="number">1</span> <span class="operator">+</span> IFNULL(commission_pct,<span class="number">0</span>)) 年薪 <span class="keyword">from</span> employees</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> salary <span class="operator">*</span> <span class="number">12</span> <span class="operator">*</span> (<span class="number">1</span> <span class="operator">+</span> IFNULL(commission_pct,<span class="number">0</span>)) <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="案例4：按年薪的高低显示员工的信息和年薪【按别名排序】"><a href="#案例4：按年薪的高低显示员工的信息和年薪【按别名排序】" class="headerlink" title="案例4：按年薪的高低显示员工的信息和年薪【按别名排序】"></a>案例4：按年薪的高低显示员工的信息和年薪【按别名排序】</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span>,salary<span class="operator">*</span><span class="number">12</span><span class="operator">*</span>(<span class="number">1</span> <span class="operator">+</span> IFNULL(commission_pct,<span class="number">0</span>)) 年薪 <span class="keyword">from</span> employees</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> 年薪 <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="案例5：按姓名的长度显示员工的姓名和工资【按函数排序】"><a href="#案例5：按姓名的长度显示员工的姓名和工资【按函数排序】" class="headerlink" title="案例5：按姓名的长度显示员工的姓名和工资【按函数排序】"></a>案例5：按姓名的长度显示员工的姓名和工资【按函数排序】</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> LENGTH(last_name) 字节长度,last_name,salary <span class="keyword">from</span> employees <span class="keyword">order</span> <span class="keyword">by</span> LENGTH(last_name) <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="案例6-：查询员工信息，要求先按工资升序，再按员工编号降序【按多个字段排序】"><a href="#案例6-：查询员工信息，要求先按工资升序，再按员工编号降序【按多个字段排序】" class="headerlink" title="案例6 ：查询员工信息，要求先按工资升序，再按员工编号降序【按多个字段排序】"></a>案例6 ：查询员工信息，要求先按工资升序，再按员工编号降序【按多个字段排序】</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">ORDER</span> <span class="keyword">BY</span> salary <span class="keyword">asc</span>,employee_id <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="案例讲解"><a href="#案例讲解" class="headerlink" title="案例讲解"></a>案例讲解</h2><h3 id="查询员工的姓名和部门号和薪资，按年薪降序，按姓名升序"><a href="#查询员工的姓名和部门号和薪资，按年薪降序，按姓名升序" class="headerlink" title="查询员工的姓名和部门号和薪资，按年薪降序，按姓名升序"></a>查询员工的姓名和部门号和薪资，按年薪降序，按姓名升序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> last_name,department_id,salary <span class="keyword">from</span> employees <span class="keyword">order</span> <span class="keyword">by</span> salary<span class="operator">*</span><span class="number">12</span><span class="operator">*</span>(<span class="number">1</span><span class="operator">+</span>IFNULL(salary,<span class="number">0</span>)) <span class="keyword">asc</span>,last_name <span class="keyword">desc</span>; </span><br></pre></td></tr></table></figure>
+<h3 id="选择工资不在8000到17000的员工的姓名和工资，按工资降序"><a href="#选择工资不在8000到17000的员工的姓名和工资，按工资降序" class="headerlink" title="选择工资不在8000到17000的员工的姓名和工资，按工资降序"></a>选择工资不在8000到17000的员工的姓名和工资，按工资降序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> last_name,salary <span class="keyword">from</span> employees <span class="keyword">WHERE</span> salary <span class="keyword">BETWEEN</span> <span class="number">8000</span> <span class="keyword">and</span> <span class="number">17000</span> <span class="keyword">order</span> <span class="keyword">by</span> salary <span class="keyword">desc</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="查询邮箱中包含e的员工信息，并先按邮箱的字节数降序，再按部门号升序"><a href="#查询邮箱中包含e的员工信息，并先按邮箱的字节数降序，再按部门号升序" class="headerlink" title="查询邮箱中包含e的员工信息，并先按邮箱的字节数降序，再按部门号升序"></a>查询邮箱中包含e的员工信息，并先按邮箱的字节数降序，再按部门号升序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span>,LENGTH(email) <span class="keyword">from</span> employees <span class="keyword">where</span> email <span class="keyword">like</span> <span class="string">&#x27;%e%&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> LENGTH(email) <span class="keyword">desc</span>,job_id; </span><br></pre></td></tr></table></figure>
+<h2 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h2><ul>
+<li>概念：类似于java中的方法，将一组逻辑语句封装在方法体中，对外暴露方法名</li>
+<li>好处： 1、隐藏了实现细节  2、提高代码的重用性</li>
+<li>调用：select 函数名（） 【from 表名】；</li>
+<li>特点：<ol>
+<li>叫什么（函数名）</li>
+<li>干什么（函数功能）</li>
+</ol>
+</li>
+<li>分类：<ol>
+<li>单行函数，如：concat、length，ifnull等</li>
+<li>分组函数，功能：做统计使用，又称为统计函数、聚合函数、组函数</li>
+</ol>
+</li>
+</ul>
+<h3 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h3><h4 id="length-长度"><a href="#length-长度" class="headerlink" title="length 长度"></a>length 长度</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">SELECT</span> LENGTH(<span class="string">&#x27;join&#x27;</span>);</span><br><span class="line">$ <span class="keyword">SELECT</span> LENGTH(<span class="string">&#x27;张三丰哈哈哈&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="concat-拼接字符串"><a href="#concat-拼接字符串" class="headerlink" title="concat 拼接字符串"></a>concat 拼接字符串</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> CONCAT(last_name,<span class="string">&#x27;_&#x27;</span>,first_name) 姓名 <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h4 id="upper、lower"><a href="#upper、lower" class="headerlink" title="upper、lower"></a>upper、lower</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="built_in">UPPER</span>(<span class="string">&#x27;join&#x27;</span>);</span><br><span class="line">$ <span class="keyword">select</span> <span class="built_in">LOWER</span>(<span class="string">&#x27;joHn&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="实例：将姓变大写，名变小写，然后拼接"><a href="#实例：将姓变大写，名变小写，然后拼接" class="headerlink" title="实例：将姓变大写，名变小写，然后拼接"></a>实例：将姓变大写，名变小写，然后拼接</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> CONCAT(<span class="built_in">UPPER</span>(last_name),<span class="built_in">LOWER</span>(first_name)) 姓名 <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h4 id="substr、substring-拆分"><a href="#substr、substring-拆分" class="headerlink" title="substr、substring   拆分"></a>substr、substring   拆分</h4><p>注意：索引从1开始，截取从指定索引处后面所有字符</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> SUBSTR(<span class="string">&#x27;哈哈哈爱上了啦啦啦&#x27;</span>,<span class="number">3</span>) out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="截取从指定索引处指定字符长度的字符"><a href="#截取从指定索引处指定字符长度的字符" class="headerlink" title="截取从指定索引处指定字符长度的字符"></a>截取从指定索引处指定字符长度的字符</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> SUBSTR(<span class="string">&#x27;哈哈哈爱上了啦啦啦&#x27;</span>,<span class="number">1</span>,<span class="number">3</span>) out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="案例：姓名总首字符大写，其他字符小写，然后用-拼接，显示出来"><a href="#案例：姓名总首字符大写，其他字符小写，然后用-拼接，显示出来" class="headerlink" title="案例：姓名总首字符大写，其他字符小写，然后用_拼接，显示出来"></a>案例：姓名总首字符大写，其他字符小写，然后用_拼接，显示出来</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">SELECT</span> CONCAT(<span class="built_in">UPPER</span>(SUBSTR(last_name,<span class="number">1</span>,<span class="number">1</span>)),<span class="string">&#x27;_&#x27;</span>,SUBSTR(last_name,<span class="number">2</span>,LENGTH(last_name))) <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
+<h4 id="instr-返回子串在主串的起始索引"><a href="#instr-返回子串在主串的起始索引" class="headerlink" title="instr 返回子串在主串的起始索引"></a>instr 返回子串在主串的起始索引</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> INSTR(<span class="string">&#x27;啦啦啦爱上了叭叭叭&#x27;</span>,<span class="string">&#x27;上&#x27;</span>) <span class="keyword">AS</span> out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="trim-去除前后空格"><a href="#trim-去除前后空格" class="headerlink" title="trim  去除前后空格"></a>trim  去除前后空格</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="built_in">trim</span>(<span class="string">&#x27;   aaa   &#x27;</span>) <span class="keyword">as</span> out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="trim-去除前后空格-1"><a href="#trim-去除前后空格-1" class="headerlink" title="trim  去除前后空格"></a>trim  去除前后空格</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ select trim(&#39;a&#39; from &#39;aaa张aaaaa一aaaaa&#39;) as out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="lpad-用指定的字符实现左填充指定长度"><a href="#lpad-用指定的字符实现左填充指定长度" class="headerlink" title="lpad 用指定的字符实现左填充指定长度"></a>lpad 用指定的字符实现左填充指定长度</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> LPAD(<span class="string">&#x27;哈哈哈&#x27;</span>,<span class="number">10</span>,<span class="string">&#x27;*&#x27;</span>) <span class="keyword">as</span> out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="apad-用指定的字符实现左填充指定长度"><a href="#apad-用指定的字符实现左填充指定长度" class="headerlink" title="apad 用指定的字符实现左填充指定长度"></a>apad 用指定的字符实现左填充指定长度</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> RPAD(<span class="string">&#x27;哈哈哈&#x27;</span>,<span class="number">12</span>,<span class="string">&#x27;ab&#x27;</span>) <span class="keyword">as</span> out_put;</span><br></pre></td></tr></table></figure>
+<h4 id="replace-替换"><a href="#replace-替换" class="headerlink" title="replace 替换"></a>replace 替换</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> REPLACE(<span class="string">&#x27;哈啦啦哈啦啦哈啦啦哈啦啦哈啦啦&#x27;</span>,<span class="string">&#x27;哈&#x27;</span>,<span class="string">&#x27;呜&#x27;</span>) <span class="keyword">as</span> out_put;</span><br></pre></td></tr></table></figure>
+<h2 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h2><h3 id="round-四舍五入"><a href="#round-四舍五入" class="headerlink" title="round 四舍五入"></a>round 四舍五入</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> ROUND(<span class="number">1.65</span>);</span><br><span class="line">$ <span class="keyword">select</span> ROUND(<span class="number">1.567</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="ceil-向上取整-向上取整，返回-gt-该参数的最小整数"><a href="#ceil-向上取整-向上取整，返回-gt-该参数的最小整数" class="headerlink" title="ceil 向上取整 向上取整，返回 &gt;= 该参数的最小整数"></a>ceil 向上取整 向上取整，返回 &gt;= 该参数的最小整数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="built_in">ceil</span>(<span class="number">1.002</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="floor-向下取整-返回小于等于该参数的最大整数"><a href="#floor-向下取整-返回小于等于该参数的最大整数" class="headerlink" title="floor 向下取整,返回小于等于该参数的最大整数"></a>floor 向下取整,返回小于等于该参数的最大整数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="built_in">floor</span>(<span class="number">9.99</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="truncate-截断"><a href="#truncate-截断" class="headerlink" title="truncate 截断"></a>truncate 截断</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="keyword">TRUNCATE</span>(<span class="number">1.69</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="mod-取余"><a href="#mod-取余" class="headerlink" title="mod 取余"></a>mod 取余</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="built_in">MOD</span>(<span class="number">-10</span>,<span class="number">-3</span>);</span><br><span class="line">$ <span class="keyword">select</span> <span class="number">10</span><span class="operator">%</span><span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="日期函数-1"><a href="#日期函数-1" class="headerlink" title="日期函数"></a>日期函数</h2><h3 id="now-返回当前系统日期-时间"><a href="#now-返回当前系统日期-时间" class="headerlink" title="now 返回当前系统日期+时间"></a>now 返回当前系统日期+时间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> now();</span><br></pre></td></tr></table></figure>
+<h3 id="curdate-返回当前系统日期，不包含时间"><a href="#curdate-返回当前系统日期，不包含时间" class="headerlink" title="curdate 返回当前系统日期，不包含时间"></a>curdate 返回当前系统日期，不包含时间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> CURDATE();</span><br></pre></td></tr></table></figure>
+<h3 id="curtime-返回当前"><a href="#curtime-返回当前" class="headerlink" title="curtime 返回当前"></a>curtime 返回当前</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> CURTIME();</span><br></pre></td></tr></table></figure>
+<h3 id="可以获取指定的部分，年、月、日、小时、分钟、秒"><a href="#可以获取指定的部分，年、月、日、小时、分钟、秒" class="headerlink" title="可以获取指定的部分，年、月、日、小时、分钟、秒"></a>可以获取指定的部分，年、月、日、小时、分钟、秒</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="keyword">YEAR</span>(NOW()) 年;</span><br><span class="line"></span><br><span class="line">$ <span class="keyword">select</span> <span class="keyword">MONTH</span>(NOW()) 月;</span><br><span class="line"></span><br><span class="line">$ <span class="keyword">select</span> MONTHNAME(NOW()) 月;</span><br></pre></td></tr></table></figure>
+<h3 id="str-to-date-将字符通过指定的格式转换成日期"><a href="#str-to-date-将字符通过指定的格式转换成日期" class="headerlink" title="str_to_date 将字符通过指定的格式转换成日期"></a>str_to_date 将字符通过指定的格式转换成日期</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> STR_TO_DATE(<span class="string">&#x27;1998-3-2&#x27;</span>,<span class="string">&#x27;%Y-%c-%d&#x27;</span>) <span class="keyword">AS</span> out_put;</span><br></pre></td></tr></table></figure>
+<h3 id="查询入职日期为-1992-4-3-的员工信息"><a href="#查询入职日期为-1992-4-3-的员工信息" class="headerlink" title="查询入职日期为 1992-4-3 的员工信息"></a>查询入职日期为 1992-4-3 的员工信息</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">WHERE</span> hiredate <span class="operator">=</span> <span class="string">&#x27;1992-4-3&#x27;</span>;</span><br><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">WHERE</span> hiredate<span class="operator">=</span>STR_TO_DATE(<span class="string">&#x27;4-3 1992&#x27;</span>, <span class="string">&#x27;%c-$d %Y&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="date-format-将期数转换成字符"><a href="#date-format-将期数转换成字符" class="headerlink" title="date_format 将期数转换成字符"></a>date_format 将期数转换成字符</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> DATE_FORMAT(NOW(),<span class="string">&#x27;%y年%m月%d日&#x27;</span>) <span class="keyword">AS</span> out_put;</span><br></pre></td></tr></table></figure>
+<h3 id="查询有奖金的员工名和入职日期（xx月-xx日-xx年）"><a href="#查询有奖金的员工名和入职日期（xx月-xx日-xx年）" class="headerlink" title="查询有奖金的员工名和入职日期（xx月/xx日 xx年）"></a>查询有奖金的员工名和入职日期（xx月/xx日 xx年）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> last_name,DATE_FORMAT(hiredate,<span class="string">&#x27;%m月/%d日 %y年&#x27;</span>) 入职日期 <span class="keyword">from</span> employees <span class="keyword">WHERE</span> commission_pct <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="其他函数-1"><a href="#其他函数-1" class="headerlink" title="其他函数"></a>其他函数</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> version();</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> DATABASE();</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">user</span>();</span><br></pre></td></tr></table></figure>
+
+<h2 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h2><h3 id="if-函数-：-if-else-的效果"><a href="#if-函数-：-if-else-的效果" class="headerlink" title="if 函数 ： if  else 的效果"></a>if 函数 ： if  else 的效果</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> if(<span class="number">10</span><span class="operator">&gt;</span><span class="number">5</span>,<span class="string">&#x27;大&#x27;</span>,<span class="string">&#x27;小&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> last_name,commission_pct,IF(commission_pct <span class="keyword">IS</span> <span class="keyword">NULL</span>,<span class="string">&#x27;没奖金，呵呵&#x27;</span>,<span class="string">&#x27;有奖金，嘻嘻&#x27;</span>) 备注 <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="case-函数的使用一"><a href="#case-函数的使用一" class="headerlink" title="case 函数的使用一"></a>case 函数的使用一</h3><h4 id="案例：查询员工的工资，要求-部门号-30，显示的工资为1-1倍-部门号-40，显示的工资为1-2倍-部门号-50，显示的工资为1-3倍-其他部门，显示的工资为原工资"><a href="#案例：查询员工的工资，要求-部门号-30，显示的工资为1-1倍-部门号-40，显示的工资为1-2倍-部门号-50，显示的工资为1-3倍-其他部门，显示的工资为原工资" class="headerlink" title="案例：查询员工的工资，要求,部门号=30，显示的工资为1.1倍,部门号=40，显示的工资为1.2倍,部门号=50，显示的工资为1.3倍,其他部门，显示的工资为原工资"></a>案例：查询员工的工资，要求,部门号=30，显示的工资为1.1倍,部门号=40，显示的工资为1.2倍,部门号=50，显示的工资为1.3倍,其他部门，显示的工资为原工资</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> salary 原始工资,department_id,</span><br><span class="line"><span class="keyword">CASE</span> department_id</span><br><span class="line"><span class="keyword">WHEN</span> <span class="number">30</span> <span class="keyword">THEN</span> salary<span class="operator">*</span><span class="number">1.1</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="number">40</span> <span class="keyword">THEN</span> salary<span class="operator">*</span><span class="number">1.2</span></span><br><span class="line"><span class="keyword">WHEN</span> <span class="number">50</span> <span class="keyword">THEN</span> salary<span class="operator">*</span><span class="number">1.3</span></span><br><span class="line"><span class="keyword">ELSE</span> salary</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">AS</span> 新工资</span><br><span class="line"><span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="case-函数的使用一-1"><a href="#case-函数的使用一-1" class="headerlink" title="case 函数的使用一"></a>case 函数的使用一</h3><h4 id="案例：查询员工的工资的情况，如果工资-gt-20000-显示A级别，如果工资-gt-15000-显示B级别，如果工资-gt-10000-显示C级别，否则，显示D级别"><a href="#案例：查询员工的工资的情况，如果工资-gt-20000-显示A级别，如果工资-gt-15000-显示B级别，如果工资-gt-10000-显示C级别，否则，显示D级别" class="headerlink" title="案例：查询员工的工资的情况，如果工资 &gt; 20000 ,显示A级别，如果工资 &gt; 15000,显示B级别，如果工资 &gt; 10000,显示C级别，否则，显示D级别"></a>案例：查询员工的工资的情况，如果工资 &gt; 20000 ,显示A级别，如果工资 &gt; 15000,显示B级别，如果工资 &gt; 10000,显示C级别，否则，显示D级别</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> salary,</span><br><span class="line"><span class="keyword">CASE</span> </span><br><span class="line"><span class="keyword">WHEN</span> salary<span class="operator">&gt;</span><span class="number">20000</span> <span class="keyword">THEN</span> <span class="string">&#x27;A&#x27;</span></span><br><span class="line"><span class="keyword">WHEN</span> salary<span class="operator">&gt;</span><span class="number">15000</span> <span class="keyword">THEN</span> <span class="string">&#x27;B&#x27;</span></span><br><span class="line"><span class="keyword">WHEN</span> salary<span class="operator">&gt;</span><span class="number">10000</span> <span class="keyword">THEN</span> <span class="string">&#x27;C&#x27;</span></span><br><span class="line"><span class="keyword">ELSE</span> <span class="string">&#x27;D&#x27;</span></span><br><span class="line"><span class="keyword">END</span> <span class="keyword">AS</span> 工资级别</span><br><span class="line"><span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
+<h2 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h2><h3 id="显示系统时间（注：日期-时间）"><a href="#显示系统时间（注：日期-时间）" class="headerlink" title="显示系统时间（注：日期+时间）"></a>显示系统时间（注：日期+时间）</h3><h3 id="查询员工号，姓名，工资，以及工资提高百分之20-后的结果"><a href="#查询员工号，姓名，工资，以及工资提高百分之20-后的结果" class="headerlink" title="查询员工号，姓名，工资，以及工资提高百分之20%后的结果"></a>查询员工号，姓名，工资，以及工资提高百分之20%后的结果</h3><h3 id="将员工的姓名按首字母排序，并写出姓名的长度"><a href="#将员工的姓名按首字母排序，并写出姓名的长度" class="headerlink" title="将员工的姓名按首字母排序，并写出姓名的长度"></a>将员工的姓名按首字母排序，并写出姓名的长度</h3><h3 id="做一个查询，产生下面的结果"><a href="#做一个查询，产生下面的结果" class="headerlink" title="做一个查询，产生下面的结果"></a>做一个查询，产生下面的结果</h3><p>​    <last_name> earns <salary> monthly but wants &lt;salary*3&gt;</p>
+<p>​    Dream Salary</p>
+<p>​    King earns 24000 monthly but wants 72000</p>
+<h3 id="使用CAST-WHEN-按照下面的条件"><a href="#使用CAST-WHEN-按照下面的条件" class="headerlink" title="使用CAST-WHEN ,按照下面的条件"></a>使用CAST-WHEN ,按照下面的条件</h3><p>​        job            grade</p>
+<p>​    AD_PRES      A</p>
+<p>​    ST_MAN        B</p>
+<p>​    IT_PROG       C</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chenguang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/03/09/704.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%BA%8C/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;09&#x2F;704.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%BA%8C&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;09&#x2F;704.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%BA%8C&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/03/08/703.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%B8%80/">703.Mysql查询语句一<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5-%E7%AC%AC%E4%BA%8C%E8%AE%B2"><span class="toc-text">Mysql查询语句-第二讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">常见函数：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">字符函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%95%B0%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-text">字数函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0"><span class="toc-text">日期函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0"><span class="toc-text">其他函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E6%9F%A5%E8%AF%A2"><span class="toc-text">排序查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B1-%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E5%B7%A5%E8%B5%84%E4%BB%8E%E5%88%B0%E5%BA%95%E6%8E%92%E5%BA%8F"><span class="toc-text">案例1 ：查询员工信息，要求工资从到底排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B2%EF%BC%9A%E6%9F%A5%E8%AF%A2%E9%83%A8%E9%97%A8%E7%BC%96%E5%8F%B7-gt-90-%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E6%8C%89%E7%85%A7%E5%85%A5%E8%81%8C%E6%97%B6%E9%97%B4%E7%9A%84%E5%85%88%E5%90%8E%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="toc-text">案例2：查询部门编号 &gt;&#x3D; 90 员工信息，按照入职时间的先后进行排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B3%EF%BC%9A%E6%8C%89%E5%B9%B4%E8%96%AA%E7%9A%84%E9%AB%98%E4%BD%8E%E6%98%BE%E7%A4%BA%E5%91%98%E5%B7%A5%E7%9A%84%E4%BF%A1%E6%81%AF%E5%92%8C%E5%B9%B4%E8%96%AA%E3%80%90%E6%8C%89%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%8E%92%E5%BA%8F%E3%80%91"><span class="toc-text">案例3：按年薪的高低显示员工的信息和年薪【按表达式排序】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B4%EF%BC%9A%E6%8C%89%E5%B9%B4%E8%96%AA%E7%9A%84%E9%AB%98%E4%BD%8E%E6%98%BE%E7%A4%BA%E5%91%98%E5%B7%A5%E7%9A%84%E4%BF%A1%E6%81%AF%E5%92%8C%E5%B9%B4%E8%96%AA%E3%80%90%E6%8C%89%E5%88%AB%E5%90%8D%E6%8E%92%E5%BA%8F%E3%80%91"><span class="toc-text">案例4：按年薪的高低显示员工的信息和年薪【按别名排序】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B5%EF%BC%9A%E6%8C%89%E5%A7%93%E5%90%8D%E7%9A%84%E9%95%BF%E5%BA%A6%E6%98%BE%E7%A4%BA%E5%91%98%E5%B7%A5%E7%9A%84%E5%A7%93%E5%90%8D%E5%92%8C%E5%B7%A5%E8%B5%84%E3%80%90%E6%8C%89%E5%87%BD%E6%95%B0%E6%8E%92%E5%BA%8F%E3%80%91"><span class="toc-text">案例5：按姓名的长度显示员工的姓名和工资【按函数排序】</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B6-%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%A6%81%E6%B1%82%E5%85%88%E6%8C%89%E5%B7%A5%E8%B5%84%E5%8D%87%E5%BA%8F%EF%BC%8C%E5%86%8D%E6%8C%89%E5%91%98%E5%B7%A5%E7%BC%96%E5%8F%B7%E9%99%8D%E5%BA%8F%E3%80%90%E6%8C%89%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F%E3%80%91"><span class="toc-text">案例6 ：查询员工信息，要求先按工资升序，再按员工编号降序【按多个字段排序】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%E8%AE%B2%E8%A7%A3"><span class="toc-text">案例讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E7%9A%84%E5%A7%93%E5%90%8D%E5%92%8C%E9%83%A8%E9%97%A8%E5%8F%B7%E5%92%8C%E8%96%AA%E8%B5%84%EF%BC%8C%E6%8C%89%E5%B9%B4%E8%96%AA%E9%99%8D%E5%BA%8F%EF%BC%8C%E6%8C%89%E5%A7%93%E5%90%8D%E5%8D%87%E5%BA%8F"><span class="toc-text">查询员工的姓名和部门号和薪资，按年薪降序，按姓名升序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E5%B7%A5%E8%B5%84%E4%B8%8D%E5%9C%A88000%E5%88%B017000%E7%9A%84%E5%91%98%E5%B7%A5%E7%9A%84%E5%A7%93%E5%90%8D%E5%92%8C%E5%B7%A5%E8%B5%84%EF%BC%8C%E6%8C%89%E5%B7%A5%E8%B5%84%E9%99%8D%E5%BA%8F"><span class="toc-text">选择工资不在8000到17000的员工的姓名和工资，按工资降序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E9%82%AE%E7%AE%B1%E4%B8%AD%E5%8C%85%E5%90%ABe%E7%9A%84%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%B9%B6%E5%85%88%E6%8C%89%E9%82%AE%E7%AE%B1%E7%9A%84%E5%AD%97%E8%8A%82%E6%95%B0%E9%99%8D%E5%BA%8F%EF%BC%8C%E5%86%8D%E6%8C%89%E9%83%A8%E9%97%A8%E5%8F%B7%E5%8D%87%E5%BA%8F"><span class="toc-text">查询邮箱中包含e的员工信息，并先按邮箱的字节数降序，再按部门号升序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0"><span class="toc-text">常见函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E5%87%BD%E6%95%B0"><span class="toc-text">字符函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0"><span class="toc-text">数学函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#round-%E5%9B%9B%E8%88%8D%E4%BA%94%E5%85%A5"><span class="toc-text">round 四舍五入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ceil-%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4-%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4%EF%BC%8C%E8%BF%94%E5%9B%9E-gt-%E8%AF%A5%E5%8F%82%E6%95%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B4%E6%95%B0"><span class="toc-text">ceil 向上取整 向上取整，返回 &gt;&#x3D; 该参数的最小整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#floor-%E5%90%91%E4%B8%8B%E5%8F%96%E6%95%B4-%E8%BF%94%E5%9B%9E%E5%B0%8F%E4%BA%8E%E7%AD%89%E4%BA%8E%E8%AF%A5%E5%8F%82%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E6%95%B4%E6%95%B0"><span class="toc-text">floor 向下取整,返回小于等于该参数的最大整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#truncate-%E6%88%AA%E6%96%AD"><span class="toc-text">truncate 截断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mod-%E5%8F%96%E4%BD%99"><span class="toc-text">mod 取余</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E6%9C%9F%E5%87%BD%E6%95%B0-1"><span class="toc-text">日期函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#now-%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9F%E6%97%A5%E6%9C%9F-%E6%97%B6%E9%97%B4"><span class="toc-text">now 返回当前系统日期+时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curdate-%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D%E7%B3%BB%E7%BB%9F%E6%97%A5%E6%9C%9F%EF%BC%8C%E4%B8%8D%E5%8C%85%E5%90%AB%E6%97%B6%E9%97%B4"><span class="toc-text">curdate 返回当前系统日期，不包含时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#curtime-%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D"><span class="toc-text">curtime 返回当前</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E4%BB%A5%E8%8E%B7%E5%8F%96%E6%8C%87%E5%AE%9A%E7%9A%84%E9%83%A8%E5%88%86%EF%BC%8C%E5%B9%B4%E3%80%81%E6%9C%88%E3%80%81%E6%97%A5%E3%80%81%E5%B0%8F%E6%97%B6%E3%80%81%E5%88%86%E9%92%9F%E3%80%81%E7%A7%92"><span class="toc-text">可以获取指定的部分，年、月、日、小时、分钟、秒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#str-to-date-%E5%B0%86%E5%AD%97%E7%AC%A6%E9%80%9A%E8%BF%87%E6%8C%87%E5%AE%9A%E7%9A%84%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2%E6%88%90%E6%97%A5%E6%9C%9F"><span class="toc-text">str_to_date 将字符通过指定的格式转换成日期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%85%A5%E8%81%8C%E6%97%A5%E6%9C%9F%E4%B8%BA-1992-4-3-%E7%9A%84%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF"><span class="toc-text">查询入职日期为 1992-4-3 的员工信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#date-format-%E5%B0%86%E6%9C%9F%E6%95%B0%E8%BD%AC%E6%8D%A2%E6%88%90%E5%AD%97%E7%AC%A6"><span class="toc-text">date_format 将期数转换成字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E6%9C%89%E5%A5%96%E9%87%91%E7%9A%84%E5%91%98%E5%B7%A5%E5%90%8D%E5%92%8C%E5%85%A5%E8%81%8C%E6%97%A5%E6%9C%9F%EF%BC%88xx%E6%9C%88-xx%E6%97%A5-xx%E5%B9%B4%EF%BC%89"><span class="toc-text">查询有奖金的员工名和入职日期（xx月&#x2F;xx日 xx年）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%87%BD%E6%95%B0-1"><span class="toc-text">其他函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%87%BD%E6%95%B0"><span class="toc-text">流程控制函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if-%E5%87%BD%E6%95%B0-%EF%BC%9A-if-else-%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-text">if 函数 ： if  else 的效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%80"><span class="toc-text">case 函数的使用一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#case-%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%80-1"><span class="toc-text">case 函数的使用一</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%EF%BC%88%E6%B3%A8%EF%BC%9A%E6%97%A5%E6%9C%9F-%E6%97%B6%E9%97%B4%EF%BC%89"><span class="toc-text">显示系统时间（注：日期+时间）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E5%8F%B7%EF%BC%8C%E5%A7%93%E5%90%8D%EF%BC%8C%E5%B7%A5%E8%B5%84%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%B7%A5%E8%B5%84%E6%8F%90%E9%AB%98%E7%99%BE%E5%88%86%E4%B9%8B20-%E5%90%8E%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-text">查询员工号，姓名，工资，以及工资提高百分之20%后的结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86%E5%91%98%E5%B7%A5%E7%9A%84%E5%A7%93%E5%90%8D%E6%8C%89%E9%A6%96%E5%AD%97%E6%AF%8D%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%B9%B6%E5%86%99%E5%87%BA%E5%A7%93%E5%90%8D%E7%9A%84%E9%95%BF%E5%BA%A6"><span class="toc-text">将员工的姓名按首字母排序，并写出姓名的长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%9A%E4%B8%80%E4%B8%AA%E6%9F%A5%E8%AF%A2%EF%BC%8C%E4%BA%A7%E7%94%9F%E4%B8%8B%E9%9D%A2%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-text">做一个查询，产生下面的结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8CAST-WHEN-%E6%8C%89%E7%85%A7%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%9D%A1%E4%BB%B6"><span class="toc-text">使用CAST-WHEN ,按照下面的条件</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/izhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

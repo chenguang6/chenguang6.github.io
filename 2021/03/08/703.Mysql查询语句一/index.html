@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>703.Mysql查询语句一 - chenguang-blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content=", 查询语句">
+  <meta name="description" content="Mysql查询语句-第一讲基础查询1$ select ...">
+  <meta name="author" content="chenguang">
+  <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_s6x2xcokxrl.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: '/images/theme/loading.gif'
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg',
+        wechat: 'https://light-mall.oss-cn-beijing.aliyuncs.com/blog/wei.jpg'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '/images/theme/welcome-image.jpg',
+          api: ''
+        },
+        motto: {
+          default: '人生只似风前絮，欢也零星，悲也零星，都作连江点点萍！',
+          api: '',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: true,
+        type: 'image',
+        image: 'https://light-mall.oss-cn-beijing.aliyuncs.com/light-shop/公众号二维码.jpg',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        model: 'simple'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconqrcode j-navbar-qrcode"></i>
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+    </div>
+    <div class="center">703.Mysql查询语句一</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+      <div id="qrcode-navbar"></div>
+    
+  </nav>
+
+  
+
+<nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li><li class="menu-item">
+        <a href="/galleries/ " class="underline "> 记录</a>
+      </li><li class="menu-item">
+        <a href="/archives/ " class="underline "> 归档</a>
+      </li><li class="menu-item">
+        <a href="/tags/ " class="underline "> 标签</a>
+      </li><li class="menu-item">
+        <a href="/categories/ " class="underline "> 分类</a>
+      </li><li class="menu-item">
+        <a href="/about/ " class="underline "> 关于</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/02.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">703.Mysql查询语句一</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 08, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2970</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="Mysql查询语句-第一讲"><a href="#Mysql查询语句-第一讲" class="headerlink" title="Mysql查询语句-第一讲"></a>Mysql查询语句-第一讲</h1><h2 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ select 查询列表 from 表名 where 判断语句</span><br></pre></td></tr></table></figure>
+<p>特点：</p>
+<p>​    1、查询列表可以是表中的字段、常量值、表达式、函数、</p>
+<p>​    2、查询的结果是一个虚拟的表格</p>
+<h2 id="基础查询案例"><a href="#基础查询案例" class="headerlink" title="基础查询案例"></a>基础查询案例</h2><h3 id="查询表中单字段"><a href="#查询表中单字段" class="headerlink" title="查询表中单字段"></a>查询表中单字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> last_name <span class="keyword">FROM</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="查询表中的多个字段"><a href="#查询表中的多个字段" class="headerlink" title="查询表中的多个字段"></a>查询表中的多个字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> last_name,salary,email <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="查询表中的所有字段"><a href="#查询表中的所有字段" class="headerlink" title="查询表中的所有字段"></a>查询表中的所有字段</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="查询常亮值"><a href="#查询常亮值" class="headerlink" title="查询常亮值"></a>查询常亮值</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="number">100</span>;</span><br><span class="line">$ <span class="keyword">select</span> <span class="string">&#x27;join&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="查询表达式"><a href="#查询表达式" class="headerlink" title="查询表达式"></a>查询表达式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> <span class="number">100</span><span class="operator">*</span><span class="number">98</span>;</span><br><span class="line">$ <span class="keyword">select</span> <span class="number">100</span><span class="operator">%</span><span class="number">98</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="查询函数"><a href="#查询函数" class="headerlink" title="查询函数"></a>查询函数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">select</span> VERSION();</span><br></pre></td></tr></table></figure>
+<h3 id="起别名（1、便于理解-，2、如果要查询的字段有重名的情况，使用别名可以区分开来）"><a href="#起别名（1、便于理解-，2、如果要查询的字段有重名的情况，使用别名可以区分开来）" class="headerlink" title="起别名（1、便于理解 ，2、如果要查询的字段有重名的情况，使用别名可以区分开来）"></a>起别名（1、便于理解 ，2、如果要查询的字段有重名的情况，使用别名可以区分开来）</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 方式一:使用<span class="keyword">as</span></span><br><span class="line">$ <span class="keyword">select</span> <span class="number">100</span><span class="operator">%</span><span class="number">98</span> <span class="keyword">AS</span> 结果;</span><br><span class="line">$ <span class="keyword">SELECT</span> last_name <span class="keyword">AS</span> 姓,first_name <span class="keyword">AS</span> 名 <span class="keyword">from</span> employees;</span><br><span class="line"># 方式二：使用空格</span><br><span class="line">$ <span class="keyword">SELECT</span> last_name  姓,first_name 名 <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="案例：查询selary-查询结果为-out-put"><a href="#案例：查询selary-查询结果为-out-put" class="headerlink" title="案例：查询selary,查询结果为 out put"></a>案例：查询selary,查询结果为 out put</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 错误案例</span><br><span class="line">$ <span class="keyword">select</span> salary <span class="keyword">AS</span> <span class="keyword">out</span> put <span class="keyword">from</span> employees;</span><br><span class="line"># 正确案例</span><br><span class="line">$ <span class="keyword">SELECT</span> salary <span class="keyword">AS</span> &quot;out put&quot; <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="去重-DISTINCT"><a href="#去重-DISTINCT" class="headerlink" title="去重  DISTINCT"></a>去重  DISTINCT</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">DISTINCT</span> department_id <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="号的作用"><a href="#号的作用" class="headerlink" title="+号的作用"></a>+号的作用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql中 + 号，仅仅只有一个功能：运算符</span><br><span class="line">	select 100+90;两个操作数都为数值型，则做加法运算;</span><br><span class="line">	select &#39;123&#39;+90l其中一方为字符串型，则试图将字符型数值转换成数值型;</span><br><span class="line">		如果转换成功，则继续做加法运算；</span><br><span class="line">		如果转换失败，则将字符型数值转换成0</span><br><span class="line">		只要其中一方为null，则结果肯定为null</span><br></pre></td></tr></table></figure>
+<h3 id="案例：查询员工名和姓连接成一个字段，并显示为姓名"><a href="#案例：查询员工名和姓连接成一个字段，并显示为姓名" class="headerlink" title="案例：查询员工名和姓连接成一个字段，并显示为姓名"></a>案例：查询员工名和姓连接成一个字段，并显示为姓名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> CONCAT(first_name,last_name) <span class="keyword">AS</span> 姓名 <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h3 id="判断非空"><a href="#判断非空" class="headerlink" title="判断非空"></a>判断非空</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> IFNULL(commission_pct,<span class="number">0</span>) <span class="keyword">from</span> employees;</span><br></pre></td></tr></table></figure>
+<h2 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h2><p>语法：select 查询列表 from 表明 where 筛选条件<br>    分类：按条件表达式筛选选<br>        1、条件运算符：&gt; &lt; = != &lt;&gt; &gt;= &lt;=<br>        2、按逻辑表达式筛选：&amp;&amp;  ||   !  and  or  not<br>        3、模糊查询：like 、between and 、in 、 is null</p>
+<h3 id="条件运算符"><a href="#条件运算符" class="headerlink" title="条件运算符"></a>条件运算符</h3><h4 id="案例一：查询工资-gt-12000-的员工信息"><a href="#案例一：查询工资-gt-12000-的员工信息" class="headerlink" title="案例一：查询工资  &gt; 12000 的员工信息"></a>案例一：查询工资  &gt; 12000 的员工信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> salary<span class="operator">&gt;</span><span class="number">12000</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="案例二：查询部门编号不等于90号的员工和部门编号"><a href="#案例二：查询部门编号不等于90号的员工和部门编号" class="headerlink" title="案例二：查询部门编号不等于90号的员工和部门编号"></a>案例二：查询部门编号不等于90号的员工和部门编号</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> last_name ,department_id <span class="keyword">from</span> employees <span class="keyword">where</span> department_id <span class="operator">&lt;&gt;</span> <span class="number">90</span>;</span><br><span class="line"><span class="keyword">select</span> last_name ,department_id <span class="keyword">from</span> employees <span class="keyword">where</span> department_id <span class="operator">!=</span> <span class="number">90</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="按逻辑表达式赛选"><a href="#按逻辑表达式赛选" class="headerlink" title="按逻辑表达式赛选"></a>按逻辑表达式赛选</h3><h4 id="案例一：查询工资在10000到20000之间的员工名、工资以及奖金"><a href="#案例一：查询工资在10000到20000之间的员工名、工资以及奖金" class="headerlink" title="案例一：查询工资在10000到20000之间的员工名、工资以及奖金"></a>案例一：查询工资在10000到20000之间的员工名、工资以及奖金</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> last_name,salary,commission_pct <span class="keyword">from</span> employees <span class="keyword">where</span> salary<span class="operator">&gt;=</span><span class="number">10000</span> <span class="operator">&amp;&amp;</span> salary <span class="operator">&lt;=</span> <span class="number">20000</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="案例二：查询部门编号不是在90-110之间或者工资高于15000的员工信息"><a href="#案例二：查询部门编号不是在90-110之间或者工资高于15000的员工信息" class="headerlink" title="案例二：查询部门编号不是在90-110之间或者工资高于15000的员工信息"></a>案例二：查询部门编号不是在90-110之间或者工资高于15000的员工信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> department_id<span class="operator">&lt;</span><span class="number">90</span> <span class="keyword">or</span> department_id<span class="operator">&gt;</span><span class="number">110</span> <span class="keyword">or</span> salary<span class="operator">&gt;</span><span class="number">15000</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> <span class="keyword">NOT</span>(department_id<span class="operator">&lt;</span><span class="number">90</span> <span class="keyword">and</span> department_id<span class="operator">&gt;</span><span class="number">110</span>) <span class="keyword">or</span> salary<span class="operator">&gt;</span><span class="number">15000</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="模糊查询like-、between-and-、in-、-is-null"><a href="#模糊查询like-、between-and-、in-、-is-null" class="headerlink" title="模糊查询like 、between and 、in 、 is null"></a>模糊查询like 、between and 、in 、 is null</h3><p>一般和通配符配合使用，通配符：% （任意多个字符，包含0个字符）、_ 任意单个字符</p>
+<h4 id="案例一：查询员工名中包含字符a的员工信息"><a href="#案例一：查询员工名中包含字符a的员工信息" class="headerlink" title="案例一：查询员工名中包含字符a的员工信息"></a>案例一：查询员工名中包含字符a的员工信息</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> last_name <span class="keyword">like</span> <span class="string">&#x27;%b%&#x27;</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> last_name <span class="keyword">like</span> <span class="string">&#x27;__n_l%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="案例二：查询员工名中第二个字符为-的员工名称"><a href="#案例二：查询员工名中第二个字符为-的员工名称" class="headerlink" title="案例二：查询员工名中第二个字符为 _ 的员工名称"></a>案例二：查询员工名中第二个字符为 _ 的员工名称</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">WHERE</span> last_name <span class="keyword">like</span> <span class="string">&#x27;_\_%&#x27;</span>;</span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">WHERE</span> last_name <span class="keyword">like</span> <span class="string">&#x27;_$_%&#x27;</span> <span class="keyword">escape</span> <span class="string">&#x27;$&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="between-and"><a href="#between-and" class="headerlink" title="between and"></a>between and</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> employee_id <span class="keyword">between</span> <span class="number">100</span> <span class="keyword">and</span> <span class="number">120</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="in-判断某字段的值是否属于in列表中的某一列"><a href="#in-判断某字段的值是否属于in列表中的某一列" class="headerlink" title="in,判断某字段的值是否属于in列表中的某一列"></a>in,判断某字段的值是否属于in列表中的某一列</h3><p>特点：<br>        1、使用 in 比使用or提高语句简洁度<br>        2、in列表的值类型必须一致或兼容<br>        3、不支持通配符</p>
+<h4 id="案例：查询员工的工种编号是IT-PROG、AD-VP、AD-PRES中的一个员工名和工种编号"><a href="#案例：查询员工的工种编号是IT-PROG、AD-VP、AD-PRES中的一个员工名和工种编号" class="headerlink" title="案例：查询员工的工种编号是IT_PROG、AD_VP、AD_PRES中的一个员工名和工种编号"></a>案例：查询员工的工种编号是IT_PROG、AD_VP、AD_PRES中的一个员工名和工种编号</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">WHERE</span> job_id <span class="keyword">in</span> (<span class="string">&#x27;IT_PROG&#x27;</span>,<span class="string">&#x27;AD_VP&#x27;</span>,<span class="string">&#x27;AD_PRE&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="is-null-为空"><a href="#is-null-为空" class="headerlink" title="is null 为空"></a>is null 为空</h3><p>= 或者 &lt;&gt; 不能判断null<br>is null 或者 is not null 可以判断null值</p>
+<h4 id="案例一：查询没有奖金的员工名和奖金率"><a href="#案例一：查询没有奖金的员工名和奖金率" class="headerlink" title="案例一：查询没有奖金的员工名和奖金率"></a>案例一：查询没有奖金的员工名和奖金率</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> last_name,commission_pct <span class="keyword">from</span> employees <span class="keyword">WHERE</span> commission_pct <span class="keyword">is</span> <span class="keyword">null</span>;</span><br><span class="line"><span class="keyword">select</span> last_name,commission_pct <span class="keyword">from</span> employees <span class="keyword">WHERE</span> commission_pct <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+<h4 id="安全等于-lt-gt"><a href="#安全等于-lt-gt" class="headerlink" title="安全等于  &lt;=&gt;"></a>安全等于  &lt;=&gt;</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> last_name,commission_pct <span class="keyword">from</span> employees <span class="keyword">WHERE</span> commission_pct <span class="operator">&lt;=&gt;</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>chenguang</li>
+    <li><strong>本文链接：</strong><a href="http://example.com/2021/03/08/703.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%B8%80/index.html" title="http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;08&#x2F;703.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%B8%80&#x2F;index.html">http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;03&#x2F;08&#x2F;703.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%B8%80&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://light-mall.oss-cn-beijing.aliyuncs.com/blog/zhi.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2021/03/09/704.Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%E4%BA%8C/"><i class="iconfont iconleft"></i>704.Mysql查询语句二</a>
+    <a href="/2021/03/05/1200.%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91-01/">1200.微信开发-01<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Mysql%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5-%E7%AC%AC%E4%B8%80%E8%AE%B2"><span class="toc-text">Mysql查询语句-第一讲</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2"><span class="toc-text">基础查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%9F%A5%E8%AF%A2%E6%A1%88%E4%BE%8B"><span class="toc-text">基础查询案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%A1%A8%E4%B8%AD%E5%8D%95%E5%AD%97%E6%AE%B5"><span class="toc-text">查询表中单字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%A4%9A%E4%B8%AA%E5%AD%97%E6%AE%B5"><span class="toc-text">查询表中的多个字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%89%80%E6%9C%89%E5%AD%97%E6%AE%B5"><span class="toc-text">查询表中的所有字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%B8%B8%E4%BA%AE%E5%80%BC"><span class="toc-text">查询常亮值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">查询表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2%E5%87%BD%E6%95%B0"><span class="toc-text">查询函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B7%E5%88%AB%E5%90%8D%EF%BC%881%E3%80%81%E4%BE%BF%E4%BA%8E%E7%90%86%E8%A7%A3-%EF%BC%8C2%E3%80%81%E5%A6%82%E6%9E%9C%E8%A6%81%E6%9F%A5%E8%AF%A2%E7%9A%84%E5%AD%97%E6%AE%B5%E6%9C%89%E9%87%8D%E5%90%8D%E7%9A%84%E6%83%85%E5%86%B5%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%88%AB%E5%90%8D%E5%8F%AF%E4%BB%A5%E5%8C%BA%E5%88%86%E5%BC%80%E6%9D%A5%EF%BC%89"><span class="toc-text">起别名（1、便于理解 ，2、如果要查询的字段有重名的情况，使用别名可以区分开来）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%9F%A5%E8%AF%A2selary-%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E4%B8%BA-out-put"><span class="toc-text">案例：查询selary,查询结果为 out put</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%BB%E9%87%8D-DISTINCT"><span class="toc-text">去重  DISTINCT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text">+号的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E6%9F%A5%E8%AF%A2%E5%91%98%E5%B7%A5%E5%90%8D%E5%92%8C%E5%A7%93%E8%BF%9E%E6%8E%A5%E6%88%90%E4%B8%80%E4%B8%AA%E5%AD%97%E6%AE%B5%EF%BC%8C%E5%B9%B6%E6%98%BE%E7%A4%BA%E4%B8%BA%E5%A7%93%E5%90%8D"><span class="toc-text">案例：查询员工名和姓连接成一个字段，并显示为姓名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%9D%9E%E7%A9%BA"><span class="toc-text">判断非空</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-text">条件查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">条件运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%80%BB%E8%BE%91%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%B5%9B%E9%80%89"><span class="toc-text">按逻辑表达式赛选</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2like-%E3%80%81between-and-%E3%80%81in-%E3%80%81-is-null"><span class="toc-text">模糊查询like 、between and 、in 、 is null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#between-and"><span class="toc-text">between and</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in-%E5%88%A4%E6%96%AD%E6%9F%90%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC%E6%98%AF%E5%90%A6%E5%B1%9E%E4%BA%8Ein%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E6%9F%90%E4%B8%80%E5%88%97"><span class="toc-text">in,判断某字段的值是否属于in列表中的某一列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#is-null-%E4%B8%BA%E7%A9%BA"><span class="toc-text">is null 为空</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=894519210 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="javascript:; "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#09BB07'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconwechat-fill "></i>
+      </a><a 
+        href="https://www.instagram.com/izhaoo/ "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#DA2E76'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconinstagram "></i>
+      </a><a 
+        href="https://github.com/izhaoo "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:izhaoo@163.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><p>Powered by <a target="_blank" href="https://hexo.io">Hexo</a>  |  Theme - <a target="_blank" href="">chenguangli</a></p></div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+    <div class="scrollbar j-scrollbar">
+  <div class="scrollbar-current j-scrollbar-current"></div>
+</div>
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
